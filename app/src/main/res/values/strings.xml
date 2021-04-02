@@ -4,4 +4,10 @@
     <string name="start_button">Start</string>
     <string name="settings_button">Settings</string>
     <string name="back">Back</string>
+    <string name="config">Game Configuration</string>
+    <string name="play">Play!</string>
+    <string name="end_game">End Game</string>
+    <string name="results">Results</string>
+    <string name="your_score">Your Score: </string>
+    <string name="play_again">Play Again?</string>
 </resources>

@@ -8,7 +8,7 @@
     tools:context=".ui.main.SettingsFragment">
 
     <TextView
-        android:id="@+id/settings_title"
+        android:id="@+id/fragment_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
