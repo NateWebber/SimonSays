@@ -6,6 +6,8 @@
     <string name="back">Back</string>
     <string name="config">Game Configuration</string>
     <string name="play">Play!</string>
+    <string name="simon_turn">Simon\'s Turn!</string>
+    <string name="player_turn">Your Turn!</string>
     <string name="end_game">End Game</string>
     <string name="results">Results</string>
     <string name="your_score">Your Score: </string>
