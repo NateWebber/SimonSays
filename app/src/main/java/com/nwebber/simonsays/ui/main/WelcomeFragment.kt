@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.nwebber.simonsays.R
 
-class MainFragment : Fragment() {
+class WelcomeFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = WelcomeFragment()
     }
 
     private lateinit var viewModel: MainViewModel
