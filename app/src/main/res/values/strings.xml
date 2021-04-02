@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Simon Says</string>
+    <string name="title">Simon Says!</string>
+    <string name="start_button">Start</string>
+    <string name="settings_button">Settings</string>
+    <string name="back">Back</string>
 </resources>

@@ -9,26 +9,36 @@
         android:id="@+id/welcomeFragment"
         android:name="com.nwebber.simonsays.ui.main.WelcomeFragment"
         android:label="title_fragment"
-        tools:layout="@layout/title_fragment" >
+        tools:layout="@layout/welcome_fragment" >
         <action
             android:id="@+id/action_welcomeFragment_to_configFragment"
-            app:destination="@id/configFragment" />
+            app:destination="@id/configFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
         <action
             android:id="@+id/action_welcomeFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_down"
+            />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.nwebber.simonsays.ui.main.SettingsFragment"
-        android:label="SettingsFragment" >
+        android:label="SettingsFragment"
+        tools:layout="@layout/settings_fragment" >
         <action
             android:id="@+id/action_settingsFragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment" />
+            app:destination="@id/welcomeFragment"
+            app:enterAnim="@anim/slide_in_down"
+            app:exitAnim="@anim/slide_out_up"
+            />
     </fragment>
     <fragment
         android:id="@+id/configFragment"
         android:name="com.nwebber.simonsays.ui.main.ConfigFragment"
-        android:label="ConfigFragment" >
+        android:label="ConfigFragment"
+        tools:layout="@layout/config_fragment" >
         <action
             android:id="@+id/action_configFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
@@ -36,7 +46,8 @@
     <fragment
         android:id="@+id/gameFragment"
         android:name="com.nwebber.simonsays.ui.main.GameFragment"
-        android:label="GameFragment" >
+        android:label="GameFragment"
+        tools:layout="@layout/game_fragment" >
         <action
             android:id="@+id/action_gameFragment_to_resultsFragment"
             app:destination="@id/resultsFragment" />
@@ -44,7 +55,8 @@
     <fragment
         android:id="@+id/resultsFragment"
         android:name="com.nwebber.simonsays.ui.main.ResultsFragment"
-        android:label="ResultsFragment" >
+        android:label="ResultsFragment"
+        tools:layout="@layout/results_fragment" >
         <action
             android:id="@+id/action_resultsFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
