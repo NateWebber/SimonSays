@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.nwebber.simonsays.R
 
@@ -13,7 +14,7 @@ class SettingsFragment : Fragment() {
     companion object {
         fun newInstance() = SettingsFragment()
     }
-
+    private val sharedViewModel: MainViewModel by activityViewModels()
     private lateinit var backButton : Button
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

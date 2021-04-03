@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.nwebber.simonsays.R
 
@@ -15,7 +16,7 @@ class WelcomeFragment : Fragment() {
     companion object {
         fun newInstance() = WelcomeFragment()
     }
-
+    private val sharedViewModel: MainViewModel by activityViewModels()
     private lateinit var startButton: Button
     private lateinit var settingsButton: Button
 

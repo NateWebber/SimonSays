@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.nwebber.simonsays.R
 
@@ -14,6 +15,7 @@ class ResultsFragment : Fragment(){
     companion object {
         fun newInstance() = GameFragment()
     }
+    private val sharedViewModel: MainViewModel by activityViewModels()
 
     private lateinit var againButton: Button
     private lateinit var scoreText: TextView

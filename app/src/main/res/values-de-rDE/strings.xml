@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kommando Pimperle</string>
+    <string name="title">Kommando Pimperle!</string>
+    <string name="start_button">Anfang</string>
+    <string name="settings_button">Einstellungen</string>
+    <string name="back">Zurück</string>
+    <string name="config">Spiel-Konfiguration</string>
+    <string name="play">Spielen!</string>
+    <string name="simon_turn">Pimperle ist Dran!</string>
+    <string name="player_turn">Du bist dran!</string>
+    <string name="end_game">Spiel beenden</string>
+    <string name="results">Ergebnisse</string>
+    <string name="your_score">Ihre Punktzahl: </string>
+    <string name="play_again">Wieder Spielen?</string>
+</resources>
