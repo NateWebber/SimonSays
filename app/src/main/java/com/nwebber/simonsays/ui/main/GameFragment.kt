@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
@@ -17,10 +18,10 @@ class GameFragment : Fragment() {
     private val sharedViewModel: MainViewModel by activityViewModels()
 
     private lateinit var endButton: Button
-    private lateinit var redButton: Button
-    private lateinit var yellowButton: Button
-    private lateinit var greenButton: Button
-    private lateinit var blueButton: Button
+    private lateinit var redButton: ImageButton
+    private lateinit var yellowButton: ImageButton
+    private lateinit var greenButton: ImageButton
+    private lateinit var blueButton: ImageButton
 
 
     override fun onCreateView(
@@ -58,8 +59,8 @@ class GameFragment : Fragment() {
                 //play simon animations here
             }
         }
-        redButton.setOnClickListener {
-            var result = sharedViewModel.checkInput(0) //green clicked
+        greenButton.setOnClickListener {
+            var result = sharedViewModel.checkInput(2) //green clicked
             if (!result){
                 view.findNavController().navigate(R.id.action_gameFragment_to_resultsFragment)
             }
@@ -68,8 +69,8 @@ class GameFragment : Fragment() {
                 //play simon animations here
             }
         }
-        redButton.setOnClickListener {
-            var result = sharedViewModel.checkInput(0) //blue clicked
+        blueButton.setOnClickListener {
+            var result = sharedViewModel.checkInput(3) //blue clicked
             if (!result){
                 view.findNavController().navigate(R.id.action_gameFragment_to_resultsFragment)
             }

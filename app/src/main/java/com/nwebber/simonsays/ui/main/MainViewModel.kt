@@ -24,9 +24,10 @@ class MainViewModel : ViewModel() {
     }
     fun simonTurn(){
         gameModel.addToPattern()
+        currentIndex=0
     }
     fun turnCompleted(): Boolean{
-        return (currentIndex == gameModel.currentPattern.size - 1)
+        return (currentIndex == gameModel.currentPattern.size)
     }
 }
 
