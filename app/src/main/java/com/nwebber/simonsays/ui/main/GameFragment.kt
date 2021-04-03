@@ -17,6 +17,11 @@ class GameFragment : Fragment() {
     private val sharedViewModel: MainViewModel by activityViewModels()
 
     private lateinit var endButton: Button
+    private lateinit var redButton: Button
+    private lateinit var yellowButton: Button
+    private lateinit var greenButton: Button
+    private lateinit var blueButton: Button
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +34,57 @@ class GameFragment : Fragment() {
         endButton.setOnClickListener {
             view.findNavController().navigate(R.id.action_gameFragment_to_resultsFragment)
         }
+        redButton = view.findViewById(R.id.button_red)
+        yellowButton = view.findViewById(R.id.button_yellow)
+        greenButton = view.findViewById(R.id.button_green)
+        blueButton = view.findViewById(R.id.button_blue)
+        redButton.setOnClickListener {
+            var result = sharedViewModel.checkInput(0) //red clicked
+            if (!result){
+                view.findNavController().navigate(R.id.action_gameFragment_to_resultsFragment)
+            }
+            else if (sharedViewModel.turnCompleted()){
+                sharedViewModel.simonTurn()
+                //play simon animations here
+            }
+        }
+        yellowButton.setOnClickListener {
+            var result = sharedViewModel.checkInput(1) //yellow clicked
+            if (!result){
+                view.findNavController().navigate(R.id.action_gameFragment_to_resultsFragment)
+            }
+            else if (sharedViewModel.turnCompleted()){
+                sharedViewModel.simonTurn()
+                //play simon animations here
+            }
+        }
+        redButton.setOnClickListener {
+            var result = sharedViewModel.checkInput(0) //green clicked
+            if (!result){
+                view.findNavController().navigate(R.id.action_gameFragment_to_resultsFragment)
+            }
+            else if (sharedViewModel.turnCompleted()){
+                sharedViewModel.simonTurn()
+                //play simon animations here
+            }
+        }
+        redButton.setOnClickListener {
+            var result = sharedViewModel.checkInput(0) //blue clicked
+            if (!result){
+                view.findNavController().navigate(R.id.action_gameFragment_to_resultsFragment)
+            }
+            else if (sharedViewModel.turnCompleted()){
+                sharedViewModel.simonTurn()
+                //play simon animations here
+            }
+        }
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        sharedViewModel.startGame()
+        //play simon animations here
     }
 }
