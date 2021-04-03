@@ -12,4 +12,7 @@
     <string name="results">Results</string>
     <string name="your_score">Your Score: </string>
     <string name="play_again">Play Again?</string>
+    <string name="dark">Dark</string>
+    <string name="light">Light</string>
+    <string name="theme">Theme</string>
 </resources>
