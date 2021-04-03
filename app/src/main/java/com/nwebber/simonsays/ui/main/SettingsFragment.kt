@@ -52,12 +52,12 @@ class SettingsFragment : Fragment() {
             when(checkedId){
                 R.id.theme_light_button -> {
                     sharedViewModel.current_theme = 0
-                    Log.d("THEME", "Light button clicked, calling activity method")
+                    //Log.d("THEME", "Light button clicked, calling activity method")
                     (activity as MainActivity?)!!.changeTheme(sharedViewModel.current_theme)
                 }
                 R.id.theme_dark_button -> {
                     sharedViewModel.current_theme = 1
-                    Log.d("THEME", "Dark button clicked, calling activity method")
+                    //Log.d("THEME", "Dark button clicked, calling activity method")
                     (activity as MainActivity?)!!.changeTheme(sharedViewModel.current_theme)
                 }
                 else -> null
