@@ -19,9 +19,9 @@ class GameFragment : Fragment() {
     companion object {
         fun newInstance() = GameFragment()
         //TODO receive the difficulty from somewhere and apply it to this variable
-        //Easy = 1.25? Normal = 1 Hard = .75?
+        //Easy = 1.33 Normal = 1 Hard = .66
         var animationSpeedDifficultyModifier = 1
-        const val ANIM_SPEED_MASTER = 200L
+        const val ANIM_SPEED_MASTER = 300L
     }
     private val sharedViewModel: MainViewModel by activityViewModels()
 
@@ -99,12 +99,12 @@ class GameFragment : Fragment() {
             else if (sharedViewModel.turnCompleted()) {
                 sharedViewModel.current_score++
                 scoreText.text = (getString(R.string.your_score).format(sharedViewModel.current_score))
-                animateRed()
+                //animateRed()
                 sharedViewModel.simonTurn()
                 animateSimon()
             }
             else{
-                animateRed()
+                //animateRed()
             }
         }
         yellowButton.setOnClickListener {
@@ -116,12 +116,12 @@ class GameFragment : Fragment() {
             else if (sharedViewModel.turnCompleted()){
                 sharedViewModel.current_score++
                 scoreText.text = (getString(R.string.your_score).format(sharedViewModel.current_score))
-                animateYellow()
+                //animateYellow()
                 sharedViewModel.simonTurn()
                 animateSimon()
             }
             else{
-                animateYellow()
+                //animateYellow()
             }
         }
         greenButton.setOnClickListener {
@@ -133,13 +133,11 @@ class GameFragment : Fragment() {
             else if (sharedViewModel.turnCompleted()){
                 sharedViewModel.current_score++
                 scoreText.text = (getString(R.string.your_score).format(sharedViewModel.current_score))
-                animateGreen()
+                //animateGreen()
                 sharedViewModel.simonTurn()
                 animateSimon()
             }
-            animSetGreen.play(animatorGreen1).before(animatorGreen2)
-            animSetGreen.duration = (ANIM_SPEED_MASTER * animationSpeedDifficultyModifier)
-            animSetGreen.start()
+
         }
         blueButton.setOnClickListener {
             var result = sharedViewModel.checkInput(3) //blue clicked
@@ -148,13 +146,13 @@ class GameFragment : Fragment() {
                 view.findNavController().navigate(action)
             }
             else if (sharedViewModel.turnCompleted()){
-                animateBlue()
+                //animateBlue()
                 sharedViewModel.current_score++
                 scoreText.text = (getString(R.string.your_score).format(sharedViewModel.current_score))
                 sharedViewModel.simonTurn()
                 animateSimon()
             }
-            animateBlue()
+            //animateBlue()
         }
 
         return view
@@ -232,18 +230,44 @@ class GameFragment : Fragment() {
         blueButton.isEnabled = true
     }
     private fun animateSimon(){
+        disableAllButtons()
         //SET TEXT TO SIMON'S TURN
         turnText.text = (getString(R.string.simon_turn))
-        for (i in 0..sharedViewModel.getPatternLength() - 1){
+        var simonAnimList = mutableListOf<Animator>()
+        var simonAnimSet = AnimatorSet()
+        for (i in 0 until sharedViewModel.getPatternLength()){
             when (sharedViewModel.getPatternAtIndex(i)){
-                0 -> animateRed()
-                1 -> animateYellow()
-                2 -> animateGreen()
-                3 -> animateBlue()
+                0 -> {
+                    simonAnimList.add(animatorRed1.clone())
+                    simonAnimList.add(animatorRed2.clone())
+                }
+                1 -> {
+                    simonAnimList.add(animatorYellow1.clone())
+                    simonAnimList.add(animatorYellow2.clone())
+                }
+                2 -> {
+                    simonAnimList.add(animatorGreen1.clone())
+                    simonAnimList.add(animatorGreen2.clone())
+                }
+                3 -> {
+                    simonAnimList.add(animatorBlue1.clone())
+                    simonAnimList.add(animatorBlue2.clone())
+                }
             }
         }
-        //SET TEXT TO YOUR TURN
-        turnText.text = (getString(R.string.player_turn))
+        simonAnimSet.playSequentially(simonAnimList)
+        simonAnimSet.duration = (ANIM_SPEED_MASTER * animationSpeedDifficultyModifier)
+        simonAnimSet.start()
+        simonAnimSet.addListener(object : Animator.AnimatorListener{
+            override fun onAnimationRepeat(animation: Animator?) {}
+            override fun onAnimationEnd(animation: Animator?){
+                enableAllButtons()
+                //SET TEXT TO YOUR TURN
+                turnText.text = (getString(R.string.player_turn))
+            }
+            override fun onAnimationCancel(animation: Animator?) {}
+            override fun onAnimationStart(animation: Animator?) {}
+        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
