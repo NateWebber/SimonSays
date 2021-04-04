@@ -37,7 +37,7 @@ class ResultsFragment : Fragment(){
 
         return view
     }
-    val args: ResultsFragmentArgs by navArgs()
+    private val args: ResultsFragmentArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
