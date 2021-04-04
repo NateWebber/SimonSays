@@ -10,7 +10,7 @@
     <string name="player_turn">Your Turn!</string>
     <string name="current_score">Current Score: %d</string>
     <string name="end_game">End Game</string>
-    <string name="results">Results</string>
+    <string name="results">Game Over!</string>
     <string name="your_score">Your Score: %d</string>
     <string name="play_again">Play Again?</string>
     <string name="dark">Dark</string>

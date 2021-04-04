@@ -11,7 +11,7 @@
     <string name="player_turn">Du bist dran!</string>
     <string name="current_score">Aktuelle Punktzahl: %d</string>
     <string name="end_game">Spiel beenden</string>
-    <string name="results">Ergebnisse</string>
+    <string name="results">Spiel vorbei!</string>
     <string name="your_score">Ihre Punktzahl: %d</string>
     <string name="play_again">Wieder Spielen?</string>
     <string name="dark">Dunkel</string>
