@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
@@ -22,6 +23,7 @@ class GameFragment : Fragment() {
     private lateinit var yellowButton: ImageButton
     private lateinit var greenButton: ImageButton
     private lateinit var blueButton: ImageButton
+    private lateinit var score_text: TextView
 
 
     override fun onCreateView(
@@ -29,6 +31,8 @@ class GameFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view = inflater.inflate(R.layout.game_fragment, container, false)
+
+        score_text = view.findViewById(R.id.score_text)
 
         endButton = view.findViewById(R.id.end_button)
 
@@ -44,7 +48,9 @@ class GameFragment : Fragment() {
             if (!result){
                 view.findNavController().navigate(R.id.action_gameFragment_to_resultsFragment)
             }
-            else if (sharedViewModel.turnCompleted()){
+            else if (sharedViewModel.turnCompleted()) {
+                sharedViewModel.current_score++
+                score_text.text = "Current Score: %d".format(sharedViewModel.current_score)
                 sharedViewModel.simonTurn()
                 //play simon animations here
             }
@@ -56,6 +62,8 @@ class GameFragment : Fragment() {
             }
             else if (sharedViewModel.turnCompleted()){
                 sharedViewModel.simonTurn()
+                sharedViewModel.current_score++
+                score_text.text = "Current Score: %d".format(sharedViewModel.current_score)
                 //play simon animations here
             }
         }
@@ -66,6 +74,8 @@ class GameFragment : Fragment() {
             }
             else if (sharedViewModel.turnCompleted()){
                 sharedViewModel.simonTurn()
+                sharedViewModel.current_score++
+                score_text.text = "Current Score: %d".format(sharedViewModel.current_score)
                 //play simon animations here
             }
         }
@@ -76,6 +86,8 @@ class GameFragment : Fragment() {
             }
             else if (sharedViewModel.turnCompleted()){
                 sharedViewModel.simonTurn()
+                sharedViewModel.current_score++
+                score_text.text = "Current Score: %d".format(sharedViewModel.current_score)
                 //play simon animations here
             }
         }
@@ -86,6 +98,7 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sharedViewModel.startGame()
+        score_text.text = "Current Score: %d".format(sharedViewModel.current_score)
         //play simon animations here
     }
 }
