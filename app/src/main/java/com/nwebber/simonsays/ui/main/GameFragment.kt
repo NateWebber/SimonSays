@@ -30,7 +30,8 @@ class GameFragment : Fragment() {
     private lateinit var yellowButton: ImageButton
     private lateinit var greenButton: ImageButton
     private lateinit var blueButton: ImageButton
-    private lateinit var score_text: TextView
+    private lateinit var scoreText: TextView
+    private lateinit var turnText: TextView
 
     //Animators and Sets
     private lateinit var animatorRed1 : ObjectAnimator
@@ -57,7 +58,8 @@ class GameFragment : Fragment() {
     ): View {
         val view = inflater.inflate(R.layout.game_fragment, container, false)
 
-        score_text = view.findViewById(R.id.score_text)
+        scoreText = view.findViewById(R.id.score_text)
+        turnText = view.findViewById(R.id.turn_text)
 
         endButton = view.findViewById(R.id.end_button)
 
@@ -96,10 +98,10 @@ class GameFragment : Fragment() {
             }
             else if (sharedViewModel.turnCompleted()) {
                 sharedViewModel.current_score++
-                score_text.text = (getString(R.string.your_score).format(sharedViewModel.current_score))
+                scoreText.text = (getString(R.string.your_score).format(sharedViewModel.current_score))
                 animateRed()
                 sharedViewModel.simonTurn()
-                //play simon animations here
+                animateSimon()
             }
             else{
                 animateRed()
@@ -113,10 +115,10 @@ class GameFragment : Fragment() {
             }
             else if (sharedViewModel.turnCompleted()){
                 sharedViewModel.current_score++
-                score_text.text = (getString(R.string.your_score).format(sharedViewModel.current_score))
+                scoreText.text = (getString(R.string.your_score).format(sharedViewModel.current_score))
                 animateYellow()
                 sharedViewModel.simonTurn()
-                //play simon animations here
+                animateSimon()
             }
             else{
                 animateYellow()
@@ -130,10 +132,10 @@ class GameFragment : Fragment() {
             }
             else if (sharedViewModel.turnCompleted()){
                 sharedViewModel.current_score++
-                score_text.text = (getString(R.string.your_score).format(sharedViewModel.current_score))
+                scoreText.text = (getString(R.string.your_score).format(sharedViewModel.current_score))
                 animateGreen()
                 sharedViewModel.simonTurn()
-                //play simon animations here
+                animateSimon()
             }
             animSetGreen.play(animatorGreen1).before(animatorGreen2)
             animSetGreen.duration = (ANIM_SPEED_MASTER * animationSpeedDifficultyModifier)
@@ -148,9 +150,9 @@ class GameFragment : Fragment() {
             else if (sharedViewModel.turnCompleted()){
                 animateBlue()
                 sharedViewModel.current_score++
-                score_text.text = (getString(R.string.your_score).format(sharedViewModel.current_score))
+                scoreText.text = (getString(R.string.your_score).format(sharedViewModel.current_score))
                 sharedViewModel.simonTurn()
-                //play simon animations here
+                animateSimon()
             }
             animateBlue()
         }
@@ -229,12 +231,26 @@ class GameFragment : Fragment() {
         greenButton.isEnabled = true
         blueButton.isEnabled = true
     }
+    private fun animateSimon(){
+        //SET TEXT TO SIMON'S TURN
+        turnText.text = (getString(R.string.simon_turn))
+        for (i in 0..sharedViewModel.getPatternLength() - 1){
+            when (sharedViewModel.getPatternAtIndex(i)){
+                0 -> animateRed()
+                1 -> animateYellow()
+                2 -> animateGreen()
+                3 -> animateBlue()
+            }
+        }
+        //SET TEXT TO YOUR TURN
+        turnText.text = (getString(R.string.player_turn))
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sharedViewModel.startGame()
-        score_text.text = (getString(R.string.your_score).format(sharedViewModel.current_score))
-        //play simon animations here
+        scoreText.text = (getString(R.string.your_score).format(sharedViewModel.current_score))
+        animateSimon()
     }
 
 

@@ -31,5 +31,11 @@ class MainViewModel : ViewModel() {
     fun turnCompleted(): Boolean{
         return (currentIndex == gameModel.currentPattern.size)
     }
+    fun getPatternLength(): Int{
+        return gameModel.currentPattern.size
+    }
+    fun getPatternAtIndex(index: Int): Int{
+        return gameModel.currentPattern[index]
+    }
 }
 
