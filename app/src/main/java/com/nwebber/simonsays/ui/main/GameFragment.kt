@@ -15,6 +15,9 @@ import com.nwebber.simonsays.R
 class GameFragment : Fragment() {
     companion object {
         fun newInstance() = GameFragment()
+        //TODO receive the difficulty from somewhere and apply it to this variable
+        //Easy = 1.25? Normal = 1 Hard = .75?
+        var animationSpeedDifficultyModifier = 1
     }
     private val sharedViewModel: MainViewModel by activityViewModels()
 
@@ -37,7 +40,8 @@ class GameFragment : Fragment() {
         endButton = view.findViewById(R.id.end_button)
 
         endButton.setOnClickListener {
-            view.findNavController().navigate(R.id.action_gameFragment_to_resultsFragment)
+            val action = GameFragmentDirections.actionGameFragmentToResultsFragment(sharedViewModel.current_score)
+            view.findNavController().navigate(action)
         }
         redButton = view.findViewById(R.id.button_red)
         yellowButton = view.findViewById(R.id.button_yellow)
@@ -46,11 +50,12 @@ class GameFragment : Fragment() {
         redButton.setOnClickListener {
             var result = sharedViewModel.checkInput(0) //red clicked
             if (!result){
-                view.findNavController().navigate(R.id.action_gameFragment_to_resultsFragment)
+                val action = GameFragmentDirections.actionGameFragmentToResultsFragment(sharedViewModel.current_score)
+                view.findNavController().navigate(action)
             }
             else if (sharedViewModel.turnCompleted()) {
                 sharedViewModel.current_score++
-                score_text.text = "Current Score: %d".format(sharedViewModel.current_score)
+                score_text.text = (getString(R.string.your_score).format(sharedViewModel.current_score))
                 sharedViewModel.simonTurn()
                 //play simon animations here
             }
@@ -58,36 +63,39 @@ class GameFragment : Fragment() {
         yellowButton.setOnClickListener {
             var result = sharedViewModel.checkInput(1) //yellow clicked
             if (!result){
-                view.findNavController().navigate(R.id.action_gameFragment_to_resultsFragment)
+                val action = GameFragmentDirections.actionGameFragmentToResultsFragment(sharedViewModel.current_score)
+                view.findNavController().navigate(action)
             }
             else if (sharedViewModel.turnCompleted()){
                 sharedViewModel.simonTurn()
                 sharedViewModel.current_score++
-                score_text.text = "Current Score: %d".format(sharedViewModel.current_score)
+                score_text.text = (getString(R.string.your_score).format(sharedViewModel.current_score))
                 //play simon animations here
             }
         }
         greenButton.setOnClickListener {
             var result = sharedViewModel.checkInput(2) //green clicked
             if (!result){
-                view.findNavController().navigate(R.id.action_gameFragment_to_resultsFragment)
+                val action = GameFragmentDirections.actionGameFragmentToResultsFragment(sharedViewModel.current_score)
+                view.findNavController().navigate(action)
             }
             else if (sharedViewModel.turnCompleted()){
                 sharedViewModel.simonTurn()
                 sharedViewModel.current_score++
-                score_text.text = "Current Score: %d".format(sharedViewModel.current_score)
+                score_text.text = (getString(R.string.your_score).format(sharedViewModel.current_score))
                 //play simon animations here
             }
         }
         blueButton.setOnClickListener {
             var result = sharedViewModel.checkInput(3) //blue clicked
             if (!result){
-                view.findNavController().navigate(R.id.action_gameFragment_to_resultsFragment)
+                val action = GameFragmentDirections.actionGameFragmentToResultsFragment(sharedViewModel.current_score)
+                view.findNavController().navigate(action)
             }
             else if (sharedViewModel.turnCompleted()){
                 sharedViewModel.simonTurn()
                 sharedViewModel.current_score++
-                score_text.text = "Current Score: %d".format(sharedViewModel.current_score)
+                score_text.text = (getString(R.string.your_score).format(sharedViewModel.current_score))
                 //play simon animations here
             }
         }
@@ -98,7 +106,8 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sharedViewModel.startGame()
-        score_text.text = "Current Score: %d".format(sharedViewModel.current_score)
+        score_text.text = (getString(R.string.your_score).format(sharedViewModel.current_score))
         //play simon animations here
     }
+
 }

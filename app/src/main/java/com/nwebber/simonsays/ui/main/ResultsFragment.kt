@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import com.nwebber.simonsays.R
 
 class ResultsFragment : Fragment(){
@@ -35,5 +36,11 @@ class ResultsFragment : Fragment(){
         scoreText = view.findViewById(R.id.you_scored_text)
 
         return view
+    }
+    val args: ResultsFragmentArgs by navArgs()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        scoreText.text = (getString(R.string.your_score).format(args.score))
     }
 }
