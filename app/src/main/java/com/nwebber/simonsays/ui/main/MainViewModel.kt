@@ -11,7 +11,7 @@ data class DifficultyDefinition(val name: String, val id: Int, val multiplier: D
 
 class MainViewModel : ViewModel() {
     var current_theme = 0
-    var current_difficulty = 1
+    var current_difficulty = 1.0
 
     //var current_turn = 0
     var current_score = 0
@@ -19,9 +19,9 @@ class MainViewModel : ViewModel() {
     var gameModel = GameModel()
 
     //difficulty data
-    val difficultyEasy = DifficultyDefinition("Easy", 0, 1.33)
+    val difficultyEasy = DifficultyDefinition("Easy", 0, 1.5)
     val difficultyMedium = DifficultyDefinition("Medium", 1, 1.0)
-    val difficultyHard = DifficultyDefinition("Hard", 2, 0.66)
+    val difficultyHard = DifficultyDefinition("Hard", 2, 0.5)
 
     val difficultyList = listOf(difficultyEasy, difficultyMedium, difficultyHard)
     private val _difficultyVocab = MutableLiveData<List<DifficultyDefinition>>()

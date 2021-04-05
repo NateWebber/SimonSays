@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,17 +14,17 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import com.nwebber.simonsays.R
 
 class GameFragment : Fragment() {
     companion object {
         fun newInstance() = GameFragment()
-        //TODO receive the difficulty from somewhere and apply it to this variable
-        //Easy = 1.33 Normal = 1 Hard = .66
-        var animationSpeedDifficultyModifier = 1
         const val ANIM_SPEED_MASTER = 300L
     }
     private val sharedViewModel: MainViewModel by activityViewModels()
+
+    private var animationSpeedDifficultyModifier : Double = 1.0
 
     private lateinit var endButton: Button
     private lateinit var redButton: ImageButton
@@ -57,6 +58,12 @@ class GameFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view = inflater.inflate(R.layout.game_fragment, container, false)
+
+
+
+        animationSpeedDifficultyModifier = sharedViewModel.current_difficulty
+
+        Log.d("DIFFICULTY", "Difficulty should be %f".format(animationSpeedDifficultyModifier * ANIM_SPEED_MASTER))
 
         scoreText = view.findViewById(R.id.score_text)
         turnText = view.findViewById(R.id.turn_text)
@@ -161,7 +168,7 @@ class GameFragment : Fragment() {
     private fun animateRed(){
         disableAllButtons()
         animSetRed.play(animatorRed1).before(animatorRed2)
-        animSetRed.duration = (ANIM_SPEED_MASTER * animationSpeedDifficultyModifier)
+        animSetRed.duration = ((ANIM_SPEED_MASTER * animationSpeedDifficultyModifier).toLong())
         animSetRed.start()
         animatorRed2.addListener(object : Animator.AnimatorListener{
             override fun onAnimationRepeat(animation: Animator?) {}
@@ -176,7 +183,7 @@ class GameFragment : Fragment() {
     private fun animateYellow(){
         disableAllButtons()
         animSetYellow.play(animatorYellow1).before(animatorYellow2)
-        animSetYellow.duration = (ANIM_SPEED_MASTER * animationSpeedDifficultyModifier)
+        animSetYellow.duration = ((ANIM_SPEED_MASTER * animationSpeedDifficultyModifier).toLong())
         animSetYellow.start()
         animatorYellow2.addListener(object : Animator.AnimatorListener{
             override fun onAnimationRepeat(animation: Animator?) {}
@@ -191,7 +198,7 @@ class GameFragment : Fragment() {
     private fun animateGreen(){
         disableAllButtons()
         animSetGreen.play(animatorGreen1).before(animatorGreen2)
-        animSetGreen.duration = (ANIM_SPEED_MASTER * animationSpeedDifficultyModifier)
+        animSetGreen.duration = ((ANIM_SPEED_MASTER * animationSpeedDifficultyModifier).toLong())
         animSetGreen.start()
         animatorGreen2.addListener(object : Animator.AnimatorListener{
             override fun onAnimationRepeat(animation: Animator?) {}
@@ -205,7 +212,7 @@ class GameFragment : Fragment() {
     private fun animateBlue(){
         disableAllButtons()
         animSetBlue.play(animatorBlue1).before(animatorBlue2)
-        animSetBlue.duration = (ANIM_SPEED_MASTER * animationSpeedDifficultyModifier)
+        animSetBlue.duration = ((ANIM_SPEED_MASTER * animationSpeedDifficultyModifier).toLong())
         animSetBlue.start()
         animatorBlue2.addListener(object : Animator.AnimatorListener{
             override fun onAnimationRepeat(animation: Animator?) {}
@@ -256,7 +263,7 @@ class GameFragment : Fragment() {
             }
         }
         simonAnimSet.playSequentially(simonAnimList)
-        simonAnimSet.duration = (ANIM_SPEED_MASTER * animationSpeedDifficultyModifier)
+        simonAnimSet.duration = ((ANIM_SPEED_MASTER * animationSpeedDifficultyModifier).toLong())
         simonAnimSet.start()
         simonAnimSet.addListener(object : Animator.AnimatorListener{
             override fun onAnimationRepeat(animation: Animator?) {}

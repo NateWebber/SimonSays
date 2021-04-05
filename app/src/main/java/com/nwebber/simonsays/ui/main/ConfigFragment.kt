@@ -1,9 +1,9 @@
 package com.nwebber.simonsays.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.inflate
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
@@ -37,7 +37,8 @@ class ConfigFragment : Fragment() {
         recycler.layoutManager = LinearLayoutManager(context)
 
         playButton.setOnClickListener {
-            view.findNavController().navigate(R.id.action_configFragment_to_gameFragment)
+            val action = ConfigFragmentDirections.actionConfigFragmentToGameFragment()
+            view.findNavController().navigate(action)
         }
         selectedDifficulty = sharedViewModel.difficultyMedium
 
@@ -61,7 +62,8 @@ class ConfigFragment : Fragment() {
         }
 
         override fun onClick(v: View?) {
-            selectedDifficulty = difficulty
+            sharedViewModel.current_difficulty = difficulty.multiplier
+            Log.d("DIFFICULTY", "Set selected difficulty to %f".format(sharedViewModel.current_difficulty))
         }
 
         fun bind(difficulty: DifficultyDefinition){
