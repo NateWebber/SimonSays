@@ -1,5 +1,6 @@
 package com.nwebber.simonsays.ui.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -66,7 +67,14 @@ class MainViewModel : ViewModel() {
         return gameModel.currentPattern[index]
     }
 
-
+    fun enableColorblind(){
+        colorblindEnabled = true
+        Log.d("CB", "Set colorblind to %s".format(colorblindEnabled))
+    }
+    fun disableColorblind(){
+        colorblindEnabled = false
+        Log.d("CB", "Set colorblind to %s".format(colorblindEnabled))
+    }
 
 }
 
