@@ -79,6 +79,12 @@ class GameFragment : Fragment() {
         greenButton = view.findViewById(R.id.button_green)
         blueButton = view.findViewById(R.id.button_blue)
 
+        if (sharedViewModel.colorblindEnabled){
+            imageSetupColorblind()
+        }
+        else{
+            imageSetupDefault()
+        }
 
         animatorRed1 = ObjectAnimator.ofFloat(redButton, "scaleY", 1f, 0f)
         animatorRed2 = ObjectAnimator.ofFloat(redButton, "scaleY", 0f, 1f)
@@ -284,6 +290,17 @@ class GameFragment : Fragment() {
         animateSimon()
     }
 
-
+    private fun imageSetupDefault(){
+        redButton.setImageResource(R.drawable.red_square)
+        yellowButton.setImageResource(R.drawable.yellow_square)
+        greenButton.setImageResource(R.drawable.green_square)
+        blueButton.setImageResource(R.drawable.blue_square)
+    }
+    private fun imageSetupColorblind(){
+        redButton.setImageResource(R.drawable.red_square_cb)
+        yellowButton.setImageResource(R.drawable.yellow_square_cb)
+        greenButton.setImageResource(R.drawable.green_square_cb)
+        blueButton.setImageResource(R.drawable.blue_square_cb)
+    }
 
 }

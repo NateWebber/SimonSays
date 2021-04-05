@@ -17,4 +17,7 @@
     <string name="dark">Dunkel</string>
     <string name="light">Hell</string>
     <string name="theme">Thema</string>
+    <string name="cbmode">Farbenblind-Modus</string>
+    <string name="enabled">Aktiviert</string>
+    <string name="disabled">Deaktiviert</string>
 </resources>

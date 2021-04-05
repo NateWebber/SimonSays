@@ -25,6 +25,10 @@ class SettingsFragment : Fragment() {
     private lateinit var themeLightButton: RadioButton
     private lateinit var themeDarkButton: RadioButton
 
+    private lateinit var cbRadioGroup: RadioGroup
+    private lateinit var cbDisabledButton: RadioButton
+    private lateinit var cbEnabledButton: RadioButton
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.settings_fragment, container, false)
@@ -41,11 +45,15 @@ class SettingsFragment : Fragment() {
                 themeLightButton.isChecked = true
                 themeLightButton.setTextColor(resources.getColor(R.color.black))
                 themeDarkButton.setTextColor(resources.getColor(R.color.black))
+                cbEnabledButton.setTextColor(resources.getColor(R.color.black))
+                cbDisabledButton.setTextColor(resources.getColor(R.color.black))
             }
             1 -> {
                 themeDarkButton.isChecked = true
                 themeLightButton.setTextColor(resources.getColor(R.color.white))
                 themeDarkButton.setTextColor(resources.getColor(R.color.white))
+                cbEnabledButton.setTextColor(resources.getColor(R.color.white))
+                cbDisabledButton.setTextColor(resources.getColor(R.color.white))
             }
         }
         themeRadioGroup.setOnCheckedChangeListener { group, checkedId ->
@@ -61,6 +69,20 @@ class SettingsFragment : Fragment() {
                     (activity as MainActivity?)!!.changeTheme(sharedViewModel.current_theme)
                 }
                 else -> null
+            }
+        }
+        cbRadioGroup = view.findViewById(R.id.cb_radiogroup)
+        cbDisabledButton = view.findViewById(R.id.cb_disabled_button)
+        cbEnabledButton = view.findViewById(R.id.cb_enabled_button)
+        cbRadioGroup.clearCheck()
+        when (sharedViewModel.colorblindEnabled){
+            false -> cbDisabledButton.isChecked = true
+            true -> cbEnabledButton.isChecked = true
+        }
+        cbRadioGroup.setOnCheckedChangeListener { group, checkedId ->
+            when (checkedId){
+                R.id.cb_disabled_button -> sharedViewModel.colorblindEnabled = false
+                R.id.cb_enabled_button -> sharedViewModel.colorblindEnabled = true
             }
         }
         return view

@@ -13,6 +13,8 @@ class MainViewModel : ViewModel() {
     var current_theme = 0
     var current_difficulty = 1.0
 
+    var colorblindEnabled: Boolean = false
+
     //var current_turn = 0
     var current_score = 0
     var currentIndex = 0

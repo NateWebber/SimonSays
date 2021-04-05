@@ -16,4 +16,7 @@
     <string name="dark">Dark</string>
     <string name="light">Light</string>
     <string name="theme">Theme</string>
+    <string name="cbmode">Colorblind Mode</string>
+    <string name="enabled">Enabled</string>
+    <string name="disabled">Disabled</string>
 </resources>
